@@ -1,5 +1,5 @@
 confine:main.o
-	$(CC) $< -o $@
+	$(CC) -static $< -o $@
 
 
 install:

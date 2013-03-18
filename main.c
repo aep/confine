@@ -14,6 +14,10 @@ int main(int argc, char **argv)
         return 3;
     }
 
+
+    char *pwd = malloc (2000);
+    getcwd(pwd, 2000);
+
     // get our own namespace
     int r = unshare(CLONE_NEWNS);
     if (r != 0)
@@ -63,6 +67,10 @@ int main(int argc, char **argv)
     // drop to the requesting user
     seteuid(getuid());
     setegid(getgid());
+
+
+    //restore pwd
+    chdir(pwd);
 
     execvp(argv[2] , argv + 3);
 }
